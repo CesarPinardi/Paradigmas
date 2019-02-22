@@ -11,7 +11,7 @@ struct aluno {
 struct professor{
 	char nome[10];
 	int id;
-};
+}Professor;
 
 void menu() {
 
@@ -28,20 +28,42 @@ void menu() {
 	
 }
 
+void cadAluno(char nome[], int ra) {
+	struct aluno VetAluno[TAM];
+	/*for (int i = 1; i < TAM; i++)
+	{
+		VetAluno[i].nome = nome;
+		ra = VetAluno[i].ra;
+	}
+	for (int j = 1; j < TAM; j++)
+	{
+		printf("\nNome: %s", VetAluno[j].nome);
+		printf(" RA: %d\n", VetAluno[j].ra);
+	}*/
+
+}
+
 void main() {
 	
-	struct aluno VetAluno[TAM];
 
 	menu();
 	int opcao;
+	int auxRA;
+	char auxNome[10];
 	printf("\nOpcao: ");
 	scanf("%d", &opcao);
 
 	switch (opcao)
 	{
 	case 1:
+
 		printf("\n\n\tCadastro Aluno\n");
-		//chamar a funcao
+		printf("Nome: ");
+		scanf("%s", auxNome);
+		printf("RA: ");
+		scanf("%d", &auxRA);
+		cadAluno(auxNome, auxRA);
+
 		break;
 	
 	case 2:
@@ -84,22 +106,6 @@ void main() {
 		break;
 	}
 
-
-	for (int i = 1; i < TAM; i++)
-	{
-		printf("\nNome: ");
-		scanf("%s", VetAluno[i].nome);
-		printf("RA: ");
-		scanf("%d", &VetAluno[i].ra);
-		printf("\n\n------------------------\n\n");
-
-	}
-
-	for (int j = 1; j < TAM; j++)
-	{
-		printf("\nNome: %s", VetAluno[j].nome);
-		printf(" RA: %d\n", VetAluno[j].ra);
-	}
 
 	system("pause");
 }
