@@ -11,7 +11,6 @@ struct aluno {
 struct professor{
 	char nome[10];
 	int id;
-	char disciplina[20];
 };
 
 void menu() {
@@ -35,16 +34,55 @@ void main() {
 
 	menu();
 	int opcao;
-	printf("Opcao: ");
+	printf("\nOpcao: ");
 	scanf("%d", &opcao);
+
 	switch (opcao)
 	{
+	case 1:
+		printf("\n\n\tCadastro Aluno\n");
+		//chamar a funcao
+		break;
+	
+	case 2:
+		printf("\n\n\tCadastro Professor\n");
+		//chamar a funcao
+		break;
+	
+	case 3:
+		printf("\n\n\tCadastro Disciplina\n");
+		//chamar a funcao
+		break;
+	
+	case 4:
+		printf("\n\n\tCadastro Aluno\n");
+		//chamar a funcao
+		break;
+
+	case 5:
+		printf("\n\n\tCancelar Matricula\n");
+		//chamar a funcao
+		break;
+
+	case 6:
+		printf("\n\n\tVincular Disciplina\n");
+		//chamar a funcao
+		break;
+
+	case 7:
+		printf("\n\n\tDesvincular Disciplina\n");
+		//chamar a funcao
+		break;
+
+	case 8:
+		printf("\n\n\tImpressoes\n");
+		//chamar a funcao
+		break;
 
 
 	default:
 		break;
 	}
-
 
 
 	for (int i = 1; i < TAM; i++)
