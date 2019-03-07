@@ -1,0 +1,133 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef int elemento;
+
+
+
+struct no {
+	elemento info;
+	struct no *link;
+};
+typedef struct no No;
+struct no* pri;
+
+void imprime(No* pri)
+{
+	No *p;
+	p = pri;
+	while (p != NULL)
+	{
+		printf("%d -> ", p->info);
+		p = p->link;
+	}
+}
+
+No * criar_vazia()
+{
+	return NULL;
+}
+
+No* novo_no()
+{
+	No* novo;
+	novo = (No*)malloc(sizeof(No));
+	if (novo == NULL)
+	{
+		printf("Erro \n");
+		exit(1);
+	}
+	return novo;
+}
+
+
+void inserir_final(No** pri, elemento x)
+{
+	No *p, *novo;
+	novo = novo_no();
+	novo->info = x;
+	novo->link = NULL;
+	p = *pri;
+	while (p != NULL && p->link != NULL) {
+		p = p->link;
+	}
+	if (p == NULL) {
+		*pri = novo;
+	}
+	else {
+		p->link = novo;
+	}
+
+}
+
+void inserir(No **pri, elemento a) 
+{
+	No *p, *novo, *anterior = NULL;
+	novo = (no*)malloc(sizeof(struct no));
+	novo->info = a; 
+	p = *pri;
+	while (p != NULL && a > p->info)
+	{
+		anterior = p;
+		p = p->link;
+	}
+	if (*pri == p) {
+		*pri = novo;
+	}
+	else {
+		anterior->link = novo;
+	}
+	novo->link = p;
+}
+
+int eliminar(no **pri, elemento a)
+{
+	no *p, *anterior = NULL;
+	p = *pri;
+	while (p != NULL && a > p->info)
+	{
+		anterior = p;
+		p = p->link;
+	}
+	if (p == NULL || a < p->info)
+	{
+		return 0;
+	}
+	if (p == *pri) {
+		*pri = p->link;
+	}
+	else {
+		anterior->link = p->link;
+	}
+	free(p);
+	return 1;
+}
+int main()
+{
+	int i;
+	elemento x;
+	No* pri;
+	pri = criar_vazia();
+	printf("numeros:");
+	for ( i = 0; i < 5; i++)
+	{
+		scanf("%d\n", &x);
+		inserir(&pri, x);
+	}
+
+	printf("Elementos:");
+	imprime(pri);
+
+	printf("Elemento a ser eliminado: ");
+	scanf("%d", &x);
+	if (eliminar(&pri, x))
+	{
+		printf("Eliminado com sucesso ");
+		imprime(pri);
+	}
+	else {
+		printf("Não existe ou lista vazia\n");
+	}
+	system("pause");
+}
