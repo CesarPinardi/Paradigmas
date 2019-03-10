@@ -88,12 +88,12 @@ int buscaDis(Disciplina *disc, int n, char nome[10]) {
 
 /*Disciplina cadDisciplina(char nome[20]){
 	Disciplina *vet = { 0 };
-	
+
 	for (int l = 0; l < 2; l++)
 	{
-		strcpy(vet[l].nome, nome);		
+		strcpy(vet[l].nome, nome);
 	}
-	
+
 	return *vet;
 }*/
 
@@ -114,7 +114,7 @@ int buscaDis(Disciplina *disc, int n, char nome[10]) {
 void main() {
 
 	Aluno vetAluno[TAM];
-	Professor vetProfessor[TAM]; 
+	Professor vetProfessor[TAM];
 	Disciplina vetDisciplina[TAM];
 	int r=0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0, auxRA = 0;
 	int count2 = 0, count3 = 0, count4 = 0, count5 = 0, auxReg, opProf, busca, opMat = 0, auxRaMat;
@@ -136,7 +136,7 @@ void main() {
 			printf("Quantidade de alunos a serem cadastrados: ");
 			scanf("%d", &opAluno);
 			count1 = (count + opAluno);
-			
+
 			for (int w = count; w < count1; w++)
 			{
 				printf("Nome: ");
@@ -145,12 +145,12 @@ void main() {
 				scanf("%d", &vetAluno[w].ra);
 				printf("\n");
 				count++;
-			}	
+			}
 			//teste de busca, depois vai sair daqui
 			printf("\nBusca:\nRA: ");
 			scanf("%d", &auxRA);
 			if (buscaAluno(vetAluno, count1, auxRA) != -1) {
-				printf("Aluno encontrado.\n");				
+				printf("Aluno encontrado.\n");
 			}
 			else
 			{
@@ -170,7 +170,7 @@ void main() {
 			{
 				printf("Nome: ");
 				scanf("%s", vetDisciplina[nn].nome);
-			
+
 				printf("\n");
 				count4++;
 			}
@@ -184,7 +184,7 @@ void main() {
 			{
 				printf("Disciplina nao encontrada.\n");
 			}
-			
+
 			break;
 
 		case 3:
@@ -213,7 +213,7 @@ void main() {
 			}
 
 			break;
-			
+
 		case 4:
 			printf("\n\n\tMatricular Aluno(s)\n");
 			do
@@ -240,11 +240,11 @@ void main() {
 				{
 					printf("Aluno nao encontrado.\n");
 				}
-				printf("Mais 1? [0 = Nao]\nOpcao: ");
+				printf("Mais 1? 0 = Nao\nOp: ");
 				scanf("%d", &opMat);
 
 			} while (opMat != 0);
-			
+
 			break;
 
 		/*
@@ -281,12 +281,12 @@ void main() {
 					printf("\n-----------------------------\n");
 				}
 
-				break; 
+				break;
 
 			case 2:
 				printf("\n\n\tLista de todas as disciplinas \n");
 
-				printf("Nome: ", disciplina);
+				printf("Nome: %s", disciplina);
 
 				break;
 
@@ -305,13 +305,15 @@ void main() {
 				break;
 
 			default:
+				printf("Opcao invalida.\n");
 				break;
 			}
-			
+
 			break;
 
-			
+
 		default:
+			printf("Opcao invalida.\n");
 			break;
 		}
 		printf("Continuar? [0 = Nao]\nOpcao: ");
