@@ -240,7 +240,7 @@ void main() {
 				{
 					printf("Aluno nao encontrado.\n");
 				}
-				printf("Mais 1? 0 = Nao\nOp: ");
+				printf("Mais 1? [0 = Nao]\nOpcao: ");
 				scanf("%d", &opMat);
 
 			} while (opMat != 0);
@@ -314,7 +314,7 @@ void main() {
 		default:
 			break;
 		}
-		printf("Continuar? [0 = Nao]");
+		printf("Continuar? [0 = Nao]\nOpcao: ");
 		scanf("%d", &op);
 	} while (op != 0);
 
