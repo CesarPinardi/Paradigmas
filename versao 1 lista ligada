@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdlib.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 typedef int elemento;
 
 
@@ -61,11 +60,11 @@ void inserir_final(No** pri, elemento x)
 
 }
 
-void inserir(No **pri, elemento a) 
+void inserir(No **pri, elemento a)
 {
 	No *p, *novo, *anterior = NULL;
 	novo = (no*)malloc(sizeof(struct no));
-	novo->info = a; 
+	novo->info = a;
 	p = *pri;
 	while (p != NULL && a > p->info)
 	{
@@ -102,24 +101,28 @@ int eliminar(no **pri, elemento a)
 	}
 	free(p);
 	return 1;
-}
-int main()
+
+}void main()
 {
-	int i;
+	int i, op;
 	elemento x;
 	No* pri;
 	pri = criar_vazia();
-	printf("numeros:");
-	for ( i = 0; i < 5; i++)
-	{
-		scanf("%d\n", &x);
-		inserir(&pri, x);
-	}
+	
+		do
+		{
+			printf("Numeros: ");
+			scanf("%d", &x);
+			inserir(&pri, x);
+			printf("Continuar? ");
+			scanf("%d", &op);
 
-	printf("Elementos:");
+		} while (op != 0);
+
+	printf("Elementos: ");
 	imprime(pri);
 
-	printf("Elemento a ser eliminado: ");
+	printf("\nElemento a ser eliminado: ");
 	scanf("%d", &x);
 	if (eliminar(&pri, x))
 	{
@@ -130,4 +133,5 @@ int main()
 		printf("Não existe ou lista vazia\n");
 	}
 	system("pause");
+
 }
