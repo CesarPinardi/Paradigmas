@@ -327,7 +327,8 @@ void main() {
 
 
 
-			default:
+			default: 
+				printf("Opcao invalida!\n");
 				break;
 			}
 
@@ -335,6 +336,7 @@ void main() {
 
 
 		default:
+			printf("Opcao invalida!\n");
 			break;
 
 		}
