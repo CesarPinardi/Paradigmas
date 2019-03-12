@@ -86,19 +86,29 @@ int buscaDis(Disciplina *disc, int n, char nome[10]) {
 
 Aluno addAluno(void) { 
 	Aluno add;
-	printf("Digite o nome do aluno: ");
+	printf("\nDigite o nome do aluno: ");
 	scanf("%s", add.nome);
 	printf("Digite o RA do aluno: ");
 	scanf("%d", &add.ra);
 	return add;
 }
 
+Professor addProf(void) {
+	Professor addP;
+	printf("\nDigite o nome do professor: ");
+	scanf("%s", addP.nome);
+	printf("Digite o numero de registro do professor: ");
+	scanf("%d", &addP.reg);
+	return addP;
+
+}
+
 void main() {
 
-	Aluno vetAluno[TAM], ret;
-	Professor vetProfessor[TAM];
+	Aluno vetAluno[TAM], retA;
+	Professor vetProfessor[TAM], retP;
 	Disciplina vetDisciplina[TAM];
-	int r = 0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0, auxRA = 1, a = 1, b = 0;
+	int r = 0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0, auxRA = 1, a1 = 1, p1 = 1;
 	int count2 = 0, count3 = 0, count4 = 0, count5 = 0, auxReg, opProf, busca, opMat = 0, auxRaMat;
 	char auxNome[10];
 	char disciplina[20], auxDisciplina[20];
@@ -112,15 +122,15 @@ void main() {
 
 		switch (opcao)
 		{
-		case 1:
-
-			while (a != 0) {
-				ret = addAluno();
-				printf("Nome: %s\n", ret.nome);
-				printf("RA: %d\n", ret.ra);
-				printf("Cadastrar mais um? 0 = Sair\nOp: ");
-				scanf("%d", &a);
-			}
+			case 1:
+				printf("\n\n\tCadastro de Aluno\n");
+				while (a1 != 0) {
+					retA = addAluno();
+					printf("\nNome: %s\n", retA.nome);
+					printf("\nRA: %d\n", retA.ra);
+					printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+					scanf("%d", &a1);
+				}
 			
 
 			//teste de busca, depois vai sair daqui
@@ -128,60 +138,35 @@ void main() {
 
 			break;
 			
-					case 2:
-						printf("\n\n\tCadastro Disciplina\n");
-						printf("Quantidade de disciplinas a serem cadastradas: ");
-						scanf("%d", &opDisc);
-						count5 = (count4 + opDisc);
+			case 2:
+				printf("\n\n\tCadastro Disciplina\n");
+				printf("Quantidade de disciplinas a serem cadastradas: ");
+				scanf("%d", &opDisc);
+				count5 = (count4 + opDisc);
 
-						for (int nn = count4; nn < count5; nn++)
-						{
-							printf("Nome: ");
-							scanf("%s", vetDisciplina[nn].nome);
+				for (int nn = count4; nn < count5; nn++)
+				{
+					printf("Nome: ");
+					scanf("%s", vetDisciplina[nn].nome);
 
-							printf("\n");
-							count4++;
-						}
+					printf("\n");
+					count4++;
+				}
 
-						printf("\nBusca:\nNome da Disciplina: ");
-						scanf("%s", disciplina);
-						if (buscaDis(vetDisciplina, count5, disciplina) != -1) {
-							printf("Disciplina encontrada.\n");
-						}
-						else
-						{
-							printf("Disciplina nao encontrada.\n");
-						}
+			break;
 
-						break;
-/*
-					case 3:
-						printf("\n\n\tCadastro Professor\n");
-						printf("Quantidade de professores a serem cadastrados: ");
-						scanf("%d", &opProf);
-						count3 = (count2 + opProf);
+			case 3:
+				printf("\n\n\tCadastro de Professor\n");
+				while (p1 != 0) {
+					retP = addProf();
+					printf("\nNome: %s\n", retP.nome);
+					printf("\nNumero de Registro: %d\n", retP.reg);
+					printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+					scanf("%d", &p1);
+				}
 
-						for (int z = count2; z < count3; z++)
-						{
-							printf("Nome: ");
-							scanf("%s", vetProfessor[z].nome);
-							printf("Numero de Registro: ");
-							scanf("%d", &vetProfessor[z].reg);
-							printf("\n");
-							count2++;
-						}
-						printf("\nBusca:\nNumero de registro: ");
-						scanf("%d", &auxReg);
-						if (buscaProf(vetProfessor, count3, auxReg) != -1) {
-							printf("Professor encontrado.\n");
-						}
-						else
-						{
-							printf("Professor nao encontrado.\n");
-						}
-
-						break;
-
+				break;
+						/*
 					case 4:
 						printf("\n\n\tMatricular Aluno(s)\n");
 						do
@@ -285,7 +270,7 @@ void main() {
 		default:
 			break;
 		}
-		printf("Continuar? [0 = Nao]\nOp: ");
+		printf("Outra operacao? [0 = Nao]\nOp: ");
 		scanf("%d", &op);
 	} while (op != 0);
 
