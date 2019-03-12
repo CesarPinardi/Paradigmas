@@ -20,7 +20,15 @@ typedef struct professor {
 
 typedef struct disciplina {
 	char nome[20];
+	int turma;
 }Disciplina;
+
+typedef struct matricula {
+	char nome[20];
+	Disciplina disc;
+}Matricula;
+
+
 
 void menu() {
 
@@ -104,15 +112,28 @@ Professor addProf(void) {
 
 }
 
+Disciplina addDisc(void) {
+	Disciplina addD;
+	printf("\nDigite o nome da disciplina: ");
+	scanf("%s", addD.nome);
+	return addD;
+}
+
+
+
 void main() {
 
 	Aluno vetAluno[TAM];
 	Professor vetProfessor[TAM];
 	Disciplina vetDisciplina[TAM];
-	int r = 0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0, auxRA = 1, a1, p1 = 1, i = 0;
-	int j = 0, auxBusca, auxTurma;
+	Matricula vetMat[TAM];
+	
+	int r = 0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0;
+	int auxRA = 1, a1, p1, d1, d2;
+	int i = 0, j = 0, k = 0, l = 0;
+	int auxBusca, auxTurma;
 	int count2 = 0, count3 = 0, count4 = 0, count5 = 0, auxReg, opProf, busca, opMat = 0, auxRaMat;
-	char auxNome[10];
+	char auxNome[20];
 	char disciplina[20], auxDisciplina[20];
 
 	do
@@ -129,39 +150,30 @@ void main() {
 			printf("\n\n\tCadastro de Aluno\n");
 			while (a1 != 0) {
 				vetAluno[i] = addAluno();
-				printf("\nNome: %s\n", vetAluno[i].nome);
-				printf("\nRA: %d\n", vetAluno[i].ra);
 				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
 				scanf("%d", &a1);
 				i++;
-
 			}
-
-
 			//teste de busca, depois vai sair daqui
-
 
 			break;
 
 		case 2:
 			printf("\n\n\tCadastro Disciplina\n");
-			printf("Quantidade de disciplinas a serem cadastradas: ");
-			scanf("%d", &opDisc);
-			count5 = (count4 + opDisc);
-
-			for (int nn = count4; nn < count5; nn++)
-			{
-				printf("Nome: ");
-				scanf("%s", vetDisciplina[nn].nome);
-
-				printf("\n");
-				count4++;
+			d1 = 1;
+			while (d1 != 0) {
+				vetDisciplina[j] = addDisc();
+				printf("\nNome: %s\n", vetDisciplina[j].nome);
+				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+				scanf("%d", &d1);
+				k++;
 			}
 
-			break;
+		break;
 
 		case 3:
 			printf("\n\n\tCadastro de Professor\n");
+			p1 = 1;
 			while (p1 != 0) {
 				vetProfessor[j] = addProf();
 				printf("\nNome: %s\n", vetProfessor[j].nome);
@@ -181,31 +193,50 @@ void main() {
 				printf("Digite o RA: ");
 				scanf("%d", &auxRaMat);
 				auxBusca = buscaAluno(vetAluno, i, auxRaMat); //funcao que ve se existe o RA digitado
-				if (auxBusca != -1) {
-					printf("Digite a disciplina a qual o aluno sera matriculado: ");
-					scanf("%s", auxDisciplina);
-					printf("Digite a turma a qual o aluno sera matriculado: ");
-					scanf("%d", &auxTurma);
-					vetAluno[auxBusca].turma = auxTurma;
-					if (buscaDis(vetDisciplina, count5, auxDisciplina) != -1) {
-						for (int ii = 0; ii < count5; ii++)//prestar atencao nesse count, pode dar erro depois
-						{
-							strcpy(vetAluno[ii].disciplina, auxDisciplina);
-							printf("Disciplina: %s\t", vetAluno[ii].disciplina);
-						}
-					}
-					else
-					{
-						printf("Disciplina nao encontrada.\n");
-					}
-
+				if (auxBusca == -1) {
+					printf("Aluno nao encontrado.\n");
 				}
 				else
 				{
-					printf("Aluno nao encontrado.\n");
+					d2 = 1;
+					while (d2 != 0)
+					{
+						printf("Nome do aluno: ");
+						scanf("%s", auxNome);
+						//fazer pra quantos alunos quiser
+						printf("Disciplina a ser cadastrada: ");
+						scanf("%s", auxDisciplina);
+						//verificar disciplina
+						printf("Qual a turma ?\nR: ");
+						scanf("%d", &auxTurma);
+						//verificar turma para apenas 1 e 2
+						for (int i0 = 0; i0 < i; i0++)
+						{
+							strcpy(vetMat[i0].nome, auxNome);
+							strcpy(vetMat[i0].disc.nome, auxDisciplina);
+							if (auxTurma == 1) {
+								vetMat[i0].disc.turma = auxTurma;
+							}
+							else
+							{
+								if (auxTurma == 2) {
+									vetMat[i0].disc.turma = auxTurma;
+								}
+								else
+								{
+									printf("Erro.\n");
+								}
+							}
+						}
+
+
+						printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+						scanf("%d", &d2);
+						l++;
+
+					}
+					
 				}
-				printf("Mais 1? 0 = Nao\nOp: ");
-				scanf("%d", &opMat);
 
 			} while (opMat != 0);
 
@@ -302,28 +333,24 @@ void main() {
 
 			case 4:
 				break;
-				/*
+				
 				case 5:
 					printf("\n\n\tImprimir lista de alunos em uma disciplina e turma\n");
-
-					printf("Qual disciplina deseja ver?: ");
+					printf("Disciplina? \nR: ");
 					scanf("%s", auxDisciplina);
-					if (buscaDis(vetDisciplina, count5, auxDisciplina) != -1) {
-						printf("Qual a turma?: ");
-						scanf("%d", auxTurma);
-						if (auxTurma == 1 || auxTurma == 2) {
-
-
-						}
-						else {
-							printf("Turma nao encontrada.\n");
+					//verificar se existe
+					printf("Turma? \nR: ");
+					scanf("%d", &auxTurma);
+					//verificar
+					for (int i1 = 0; i1 < TAM; i1++)
+					{
+						if ((strcmp(vetMat[i1].disc.nome, auxDisciplina) == 0) && (vetMat[i1].disc.turma == auxTurma)) {
+							printf("Nome: %s", vetMat[i1].nome);
 						}
 					}
-					else {
-						printf("Disciplina nao encontrada.\n");
-					}
+					
 
-					break;*/
+					break;
 
 
 
@@ -340,7 +367,7 @@ void main() {
 			break;
 
 		}
-
+		system("cls");
 		printf("Outra operacao? [0 = Nao]\nOp: ");
 		scanf("%d", &op);
 
