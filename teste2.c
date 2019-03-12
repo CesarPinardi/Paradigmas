@@ -323,31 +323,31 @@ void main() {
 						printf("Disciplina nao encontrada.\n");
 					}
 
-					break;
+					break;*/
 
-
-
-				default:
-					break;
-				}
-
-				break;
 
 
 			default:
 				break;
-				*/
 			}
-			
-				printf("Outra operacao? [0 = Nao]\nOp: ");
-				scanf("%d", &op);
+
+			break;
 
 
-			}while (op != 0);
+		default:
+			break;
 
-
-
-			system("pause");
 		}
-	} 
-	
+
+		printf("Outra operacao? [0 = Nao]\nOp: ");
+		scanf("%d", &op);
+
+
+	} while (op != 0);
+
+
+
+	system("pause");
+}
+
+
