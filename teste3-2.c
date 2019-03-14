@@ -12,8 +12,6 @@ typedef struct aluno {
 	int turma; //chamar struct disciplina e alterar a chamada
 }Aluno;
 
-
-
 typedef struct disciplina {
 	char nome[20];
 	int turma;
@@ -98,6 +96,7 @@ Aluno addAluno(void) {
 	scanf("%s", add.nome);
 	printf("Digite o RA do aluno: ");
 	scanf("%d", &add.ra);
+	printf("OK!\n");
 	return add;
 }
 
@@ -107,6 +106,7 @@ Professor addProf(void) {
 	scanf("%s", addP.nome);
 	printf("Digite o numero de registro do professor: ");
 	scanf("%d", &addP.reg);
+	printf("OK!\n");
 	return addP;
 }
 
@@ -114,18 +114,22 @@ Disciplina addDisc(void) {
 	Disciplina addD;
 	printf("\nDigite o nome da disciplina: ");
 	scanf("%s", addD.nome);
+	printf("\nDigite a turma: ");
+	scanf("%d", &addD.turma);
+	printf("OK!\n");
 	return addD;
 }
 
 
 Matricula addMat() {
-	Matricula addM;	
+	Matricula addM;
 	printf("\nNome do aluno: ");
 	scanf("%s", addM.nome);
 	printf("Disciplina em que o aluno '%s' sera matriculado: ", addM.nome);
 	scanf("%s", addM.disc.nome);
 	printf("Turma da disciplina em que o aluno '%s' sera matriculado (1 ou 2): ", addM.nome);
 	scanf("%d", &addM.disc.turma);
+	printf("OK!\n");
 	return addM;
 }
 
@@ -138,10 +142,11 @@ Matricula cancelaMat() {
 	scanf("%s", canM.disc.nome);
 	printf("Turma da disciplina em que o aluno '%s' sera matriculado (1 ou 2): ", canM.nome);
 	scanf("%d", &canM.disc.turma);
-	strcpy(canM.nome, " ");
-	strcpy(canM.disc.nome, " ");
-	canM.disc.turma = 0;
+	strcpy(canM.nome, "00000");
+	strcpy(canM.disc.nome, "00000");
+	canM.disc.turma = 00000;
 	//se encontrar tudo aqui:
+	printf("OK!\n");
 	return canM;
 }
 
@@ -151,7 +156,21 @@ Professor vincular() {
 	scanf("%s", vinc.disciplina.nome);
 	printf("Turma da disciplina a ser vinculada: ");
 	scanf("%d", &vinc.disciplina.turma);
+	printf("OK!\n");
 	return vinc;
+
+}
+
+Professor desvincular(){
+	Professor desvinc;
+	printf("Disciplina a ser desvinculada: ");
+	scanf("%s", desvinc.disciplina.nome);
+	printf("Turma da disciplina a ser desvinculada: ");
+	scanf("%d", &desvinc.disciplina.turma);
+	strcpy(desvinc.disciplina.nome, "00000");
+	desvinc.disciplina.turma = 00000;
+	printf("OK!\n");
+	return desvinc;
 
 }
 
@@ -223,10 +242,12 @@ do
 		d2 = 1;
 		while (d2 != 0)
 		{
+
 			vetMat[l] = addMat();
+
 			printf("\nNome aluno: %s", vetMat[l].nome);
 			printf("\nDisciplina: %s, Turma: %d", vetMat[l].disc.nome, vetMat[l].disc.turma);
-			printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+			printf("\nMatricular mais um? 0 = Sair\nOp: ");
 			scanf("%d", &d2);
 			l++;
 		}
@@ -246,7 +267,7 @@ do
 			m++;
 		}
 		break;
-			
+
 		case 6:
 			printf("\n\n\tVincular Disciplina\n");
 			printf("\nNumero de registro do professor: ");
@@ -256,21 +277,29 @@ do
 			while (v1 != 0)
 			{
 				vetProfessor[n] = vincular();
-				printf("\nNome da disciplina: %s\nTurma: %d\nProfessor: %s", vetProfessor[n].disciplina.nome, vetProfessor[n].disciplina.turma, vetProfessor[n].nome);
-				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
+				printf("\nNome da disciplina: %s\nTurma: %d", vetProfessor[n].disciplina.nome, vetProfessor[n].disciplina.turma);
+				printf("\nNumero de registro do professor: %d\n",	 vetProfessor[n].reg);
+				printf("\nVincular mais um? 0 = Sair\nOp: ");
 				scanf("%d", &v1);
 				n++;
 			}
-			
+
 
 			break;
 		case 7:
 			printf("\n\n\tDesvincular Disciplina\n");
+			v2 = 1;
+			while (v2 != 0)
+			{
+				vetProfessor[o] = desvincular();
 
+				printf("\nDesvincular mais um? 0 = Sair\nOp: ");
+				scanf("%d", &v2);
+				o++;
+			}
 
-			//chamar a funcao
 			break;
-			
+
 	case 8:
 		printf("\n\n\tImpressoes\n");
 		subMenuImp();
@@ -293,7 +322,7 @@ do
 		case 2:
 			printf("\n\n\tLista de todas as disciplinas \n");
 			printf("Disciplinas: \n");
-			for (int ww = 0; ww < count5; ww++)
+			for (int ww = 0; ww < k; ww++)
 			{
 				printf(" %s\n", vetDisciplina[ww].nome);
 			}
@@ -315,7 +344,7 @@ do
 			break;
 
 		case 4:
-			printf("\n\n\Imprimir lista de disciplinas de um aluno\n");
+			printf("\n\n\tImprimir lista de disciplinas de um aluno\n");
 			printf("Digite o nome do aluno: ");
 			scanf("%s", auxNome);
 			printf("Digite o RA: ");
@@ -332,10 +361,10 @@ do
 
 		case 5:
 			printf("\n\n\tImprimir lista de alunos em uma disciplina e turma\n");
-			printf("Disciplina? \nR: ");
+			printf("Digite a disciplina: "\nR: ");
 			scanf("%s", auxDisciplina);
 			//verificar se existe
-			printf("Turma? \nR: ");
+			printf("Digite a turma: \nR: ");
 			scanf("%d", &auxTurma);
 			//verificar
 			for (int i1 = 0; i1 < i; i1++)
@@ -343,13 +372,18 @@ do
 				if ((strcmp(vetMat[i1].disc.nome, auxDisciplina) == 0) && (vetMat[i1].disc.turma == auxTurma)) {
 					printf("Nome: %s\n", vetMat[i1].nome);
 				}
-					
+
 			}
 
 			break;
 
-		case 6: 
+		case 6:
 			printf("\n\n\tLista de alunos de uma disciplina\n");
+			printf("Digite a disciplina: \n");
+			scanf("%s", auxDisciplina);
+			//verificar
+
+
 			break;
 
 		case 7:
@@ -357,9 +391,14 @@ do
 			printf("\nDigite o numero de registro do professor: ");
 			scanf("%d", &auxReg);
 			//verificar
-			printf("Disciplinas:\n%s\n", vetProfessor->disciplina.nome);
-				
+
+
+			for (int g = 0; g < j; g++) {
+				printf("Disciplinas:\n%s\n", vetProfessor[g].disciplina.nome);
+			}
+
 			break;
+
 
 		case 8:
 			printf("\n\n\tLista de todas os professores vinculados a uma disciplina\n");
@@ -369,8 +408,6 @@ do
 			printf("Disciplina %s\nProfessores vinculados: %s\n", vetDisciplina->nome, vetProfessor->disciplina.nome);
 
 			break;
-
-
 
 		default:
 			printf("Opcao invalida!\n");
@@ -387,7 +424,7 @@ do
 	}
 	printf("\nOutra operacao? [0 = Nao]\nOp: ");
 	scanf("%d", &op);
-		
+
 
 } while (op != 0);
 
@@ -395,4 +432,3 @@ do
 
 system("pause");
 }
-
