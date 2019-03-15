@@ -125,7 +125,7 @@ Disciplina addDisc(void) {
 //Função que faz a matricula.
 Matricula addMat() {
 	Matricula addM[TAM];
-	int qq = 0;
+	int qq = 0, auxT;
 	char aux1[20], aux2[20];
 	printf("Para parar o cadastro digite 'a'\n");
 	do
@@ -150,7 +150,7 @@ Matricula addMat() {
 
 	
 	printf("Turma da disciplina em que o aluno '%s' sera matriculado (1 ou 2): ", addM[qq].nome);
-	scanf("%d", &addM[qq].disc.turma);
+	scanf("%d", &auxT);
 	
 	
 	
