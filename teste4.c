@@ -126,16 +126,16 @@ Disciplina addDisc(void) {
 Matricula addMat(int aux, int aux2) {
 	Matricula addM[TAM];
 	int qq = 0;
-	char aux[20];
+	char aux1[20];
 	printf("Para parar o cadastro digite 'a'\n");
 	do
 	{
 		printf("Nome: ");
 		scanf("%s", addM[qq].nome);
-		strcpy(aux, addM[qq].nome);
+		strcpy(aux1, addM[qq].nome);
 		qq++;
 
-	} while (aux != 'a');
+	} while (strcmp(aux1, "a"));
 	
 	
 
