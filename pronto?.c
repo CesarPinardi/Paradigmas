@@ -9,7 +9,7 @@ typedef struct aluno {
 	char nome[20];
 	int ra;
 	char disciplina[20];
-	int turma; 
+	int turma;
 }Aluno;
 
 typedef struct disciplina {
@@ -227,7 +227,6 @@ void main() {
 			d1 = 1;
 			while (d1 != 0) {
 				vetDisciplina[k] = addDisc();
-				printf("\nNome: %s\n", vetDisciplina[k].nome);
 				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
 				scanf("%d", &d1);
 				k++;
@@ -284,35 +283,34 @@ void main() {
 		case 6:
 			printf("\n\n\tVincular Disciplina\n");
 			v1 = 1;
-				while (v1 != 0)
-				{
-					printf("\nNumero de registro do professor: ");
-					scanf("%d", &auxReg);
-					auxBusca = buscaProf(vetProfessor, j, auxReg);
-					if (auxBusca != -1) {
-						
-						n = auxBusca;	
-						vetProfessor[n] = vincular(vetProfessor[n].nome, vetProfessor[n].reg);
-						printf("\nNome da disciplina: %s\nTurma: %d", vetProfessor[n].disciplina.nome, vetProfessor[n].disciplina.turma);
-						vetProfessor[n].reg = auxReg;
-						printf("\nNumero de registro do professor: %d\n", vetProfessor[n].reg);
-						printf("%s", vetProfessor[n].nome);
-					}
-					else
-					{
-						printf("Numero de registro nao encontrado.\n");
-					}
-						printf("\nVincular mais um? 0 = Sair\nOp: ");
-						scanf("%d", &v1);
+			while (v1 != 0)
+			{
+				printf("\nNumero de registro do professor: ");
+				scanf("%d", &auxReg);
+				auxBusca = buscaProf(vetProfessor, j, auxReg);
+				if (auxBusca != -1) {
 
-					
-					
-
+					n = auxBusca;
+					vetProfessor[n] = vincular(vetProfessor[n].nome, vetProfessor[n].reg);
+					printf("\nNome da disciplina: %s\nTurma: %d", vetProfessor[n].disciplina.nome, vetProfessor[n].disciplina.turma);
+					printf("\nNumero de registro do professor: %d\n", vetProfessor[n].reg);
 					
 				}
+				else
+				{
+					printf("Numero de registro nao encontrado.\n");
+				}
+				printf("\nVincular mais um? 0 = Sair\nOp: ");
+				scanf("%d", &v1);
 
-			
-			
+
+
+
+
+			}
+
+
+
 			break;
 
 		case 7:
