@@ -128,14 +128,17 @@ Matricula addMat(int aux, int aux2) {
 	int qq = 0;
 	char aux[20];
 	printf("Para parar o cadastro digite 'a'\n");
-	while (aux[qq] != "a")
+	do
 	{
-		printf("\nNome do aluno: ");
+		printf("Nome: ");
 		scanf("%s", addM[qq].nome);
+		strcpy(aux, addM[qq].nome);
 		qq++;
 
-		
-	}
+	} while (aux != 'a');
+	
+	
+
 	for ( qq = 0; qq < aux2; qq++)
 	{
 		printf("Disciplina em que o aluno '%s' sera matriculado: ", addM[qq].nome);
