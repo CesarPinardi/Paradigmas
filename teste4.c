@@ -279,7 +279,7 @@ void main() {
 			d2 = 1;
 			while (d2 != 0)
 			{
-				vetMat[l] = addMat(i, k);
+				vetMat[l] = addMat();
 				printf("\nNome aluno: %s", vetMat[l].nome);
 				printf("\nDisciplina: %s, Turma: %d", vetMat[l].disc.nome, vetMat[l].disc.turma);
 				printf("\nMatricular mais um? 0 = Sair\nOp: ");
