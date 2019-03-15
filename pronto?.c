@@ -186,13 +186,13 @@ void main() {
 	Disciplina vetDisciplina[TAM];
 	Matricula vetMat[TAM];
 
-	int r = 0, opcao, op = 1, opMenu, opAluno, opDisc, count = 0, count1 = 0, pos = 0;
-	int auxRA = 1, a1, p1, d1, d2, d3, v1, v2;
+	int opcao, op = 1, opMenu, opAluno, opDisc, opProf, opMat = 0;
+	int a1, p1, d1, d2, d3, v1, v2;
 	int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, i2 = 0;
-	int auxBusca, auxTurma, auxBuscad;
-	int count2 = 0, count3 = 0, count4 = 0, count5 = 0, auxReg, opProf, busca, opMat = 0, auxRaMat;
-	char auxNome[20];
-	char disciplina[20], auxDisciplina[20];
+	int auxBusca, auxTurma, auxBuscad, auxRA = 1, auxRaMat, auxReg;
+	int busca;
+	char auxNome[20], auxDisciplina[20];
+	
 
 	do
 	{
@@ -401,10 +401,10 @@ void main() {
 				printf("\n\n\tImprimir lista de alunos em uma disciplina e turma\n");
 				printf("Digite a disciplina: \nR: ");
 				scanf("%s", auxDisciplina);
-				//verificar se existe
+				
 				printf("Digite a turma: \nR: ");
 				scanf("%d", &auxTurma);
-				//verificar
+				
 				for (int i1 = 0; i1 < i; i1++)
 				{
 					if ((strcmp(vetMat[i1].disc.nome, auxDisciplina) == 0) && (vetMat[i1].disc.turma == auxTurma)) {
