@@ -54,7 +54,7 @@ void subMenuImp() {
 	printf("7)Imprimir lista de todas as disciplinas ministradas por um professor\n");
 	printf("8)Imprimir lista de todas os professores vinculados a uma disciplina\n");
 }
-//funcoes de busca, retornam -1 caso nao achem
+//funcoes de busca, retornam -1 caso nao achem, retorna uma posicao caso achem
 int buscaAluno(Aluno *vet, int n, int ra) {
 	int x;
 	for (x = 0; x < n; x++)
@@ -97,7 +97,7 @@ Aluno addAluno(void) {
 	printf("Digite o RA do aluno: ");
 	scanf("%d", &add.ra);
 	printf("OK!\n");
-	return add;
+	return add; //retorna vetor inteiro
 }
 
 Professor addProf(void) {
@@ -107,7 +107,7 @@ Professor addProf(void) {
 	printf("Digite o numero de registro do professor: ");
 	scanf("%d", &addP.reg);
 	printf("OK!\n");
-	return addP;
+	return addP; 
 }
 
 Disciplina addDisc(void) {
@@ -133,13 +133,13 @@ Matricula addMat() {
 
 Matricula cancelaMat() {
 	Matricula canM;
-	//while para n alunos até sair, n disciplinas tbm
 	printf("Nome do aluno: ");
 	scanf("%s", canM.nome);
 	printf("Disciplina em que o aluno '%s' sera removido: ", canM.nome);
 	scanf("%s", canM.disc.nome);
 	printf("Turma da disciplina em que o aluno '%s' sera matriculado (1 ou 2): ", canM.nome);
 	scanf("%d", &canM.disc.turma);
+	//forma de simbolizar que nao ha nada no vetor
 	strcpy(canM.nome, "00000");
 	strcpy(canM.disc.nome, "00000");
 	canM.disc.turma = 00000;
@@ -199,7 +199,7 @@ void main() {
 			printf("\nOpcao invalida, digite uma opcao entre 1 e 8: ");
 			scanf("%d", &opcao);
 		}
-
+		//parada
 		switch (opcao)
 		{
 		case 1:
@@ -210,8 +210,9 @@ void main() {
 				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
 				scanf("%d", &a1);
 				i++;
+				//anda 1 posição do vetor para proximo cadastro
 			}
-
+			//i = numero de alunos
 			break;
 
 		case 2:
@@ -224,7 +225,7 @@ void main() {
 				scanf("%d", &d1);
 				k++;
 			}
-
+			//k = numero de disciplinas
 			break;
 
 		case 3:
@@ -238,7 +239,7 @@ void main() {
 				scanf("%d", &p1);
 				j++;
 			}
-
+			//j = numero de professores
 			break;
 
 		case 4:
@@ -278,6 +279,7 @@ void main() {
 				vetMat[m] = cancelaMat();
 				auxBusca = buscaAluno(vetAluno, i, vetAluno[l].ra);
 				auxBuscad = buscaDis(vetDisciplina, k, vetMat[l].disc.nome);
+				//caso buscas deem certo
 				if (auxBusca != -1 && auxBuscad != -1)
 				{
 					printf("\nNome aluno: %s", vetMat[m].nome);
@@ -286,7 +288,7 @@ void main() {
 					scanf("%d", &d3);
 					m++;
 				}
-				else
+				else //caso nao encontre, erro
 				{
 					printf("Aluno ou disciplina nao encontrado.\n");
 				}
@@ -431,7 +433,6 @@ void main() {
 				{
 					printf("Digite a turma: \nR: ");
 					scanf("%d", &auxTurma);
-					//verificar
 					for (int i1 = 0; i1 < i; i1++)
 					{
 						if ((strcmp(vetMat[i1].disc.nome, auxDisciplina) == 0) && (vetMat[i1].disc.turma == auxTurma)) {
@@ -515,7 +516,6 @@ void main() {
 			}
 
 			break;
-
 
 		default:
 			printf("Opcao invalida!\n");
