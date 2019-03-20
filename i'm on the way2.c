@@ -127,7 +127,7 @@ Matricula addMat() {
 	Matricula addM[TAM];
 	int qq = 0, auxT, count = 0;
 	char aux1[20], aux2[20];
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
 		printf("\nNome: ");
@@ -140,7 +140,7 @@ Matricula addMat() {
 
 
 	qq = 0;
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
 		printf("\nDisciplina em que os alunos serao matriculados: ");
@@ -173,7 +173,7 @@ Matricula cancelaMat() {
 	int qq = 0, auxT, count = 0;
 	char aux1[20], aux2[20];
 
-	printf("Para parar digite 'x'\n");
+	printf("\nPara parar digite 'x'\n");
 	do
 	{
 		printf("\nNome: ");
@@ -186,7 +186,7 @@ Matricula cancelaMat() {
 
 
 	qq = 0;
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
 		printf("\nDisciplina em que os alunos serao removidos: ");
@@ -214,10 +214,10 @@ Professor vincular() {
 	Professor vinc[TAM];
 	int qq = 0, auxT, count = 0;
 	char aux1[20], aux2[20];
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Nome: ");
+		printf("Nome do professor: ");
 		scanf("%s", vinc[qq].nome);
 		strcpy(aux1, vinc[qq].nome);
 		count++;
@@ -226,10 +226,10 @@ Professor vincular() {
 
 
 	qq = 0;
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Disciplina em que os professores serao vinculados: ");
+		printf("\nDisciplina em que os professores serao vinculados: ");
 		scanf("%s", vinc[qq].disc.nome);
 		strcpy(aux2, vinc[qq].disc.nome);
 		qq++;
@@ -237,7 +237,7 @@ Professor vincular() {
 
 
 
-	printf("Turma da disciplina em que os professores serao vinculados (1 ou 2): ", vinc[qq].nome);
+	printf("\nTurma da disciplina em que os professores serao vinculados (1 ou 2): ", vinc[qq].nome);
 	scanf("%d", &auxT);
 
 	for (int y1 = 0; y1 < count; y1++)
@@ -260,10 +260,10 @@ Professor desvincular() {
 	Professor desvinc[TAM];
 	int qq = 0, auxT, count = 0;
 	char aux1[20], aux2[20];
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Nome: ");
+		printf("\nNome do professor: ");
 		scanf("%s", desvinc[qq].nome);
 		strcpy(aux1, desvinc[qq].nome);
 		qq++;
@@ -273,10 +273,10 @@ Professor desvincular() {
 
 
 	qq = 0;
-	printf("Para parar o cadastro digite 'x'\n");
+	printf("\nPara parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Disciplina em que os professores serao desvinculados: ");
+		printf("\nDisciplina em que os professores serao desvinculados: ");
 		scanf("%s", desvinc[qq].disc.nome);
 		strcpy(aux2, desvinc[qq].disc.nome);
 		qq++;
@@ -284,7 +284,7 @@ Professor desvincular() {
 
 
 
-	printf("Turma da disciplina em que os professores serao desvinculados (1 ou 2): ", desvinc[qq].nome);
+	printf("\nTurma da disciplina em que os professores serao desvinculados (1 ou 2): ", desvinc[qq].nome);
 	scanf("%d", &auxT);
 
 	for (int y1 = 0; y1 < count; y1++)
