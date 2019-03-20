@@ -130,7 +130,7 @@ Matricula addMat() {
 	printf("Para parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Nome: ");
+		printf("\nNome: ");
 		scanf("%s", addM[qq].nome);
 		strcpy(aux1, addM[qq].nome);
 		qq++;
@@ -143,7 +143,7 @@ Matricula addMat() {
 	printf("Para parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Disciplina em que os alunos serao matriculados: ");
+		printf("\nDisciplina em que os alunos serao matriculados: ");
 		scanf("%s", addM[qq].disc.nome);
 		strcpy(aux2, addM[qq].disc.nome);
 		qq++;
@@ -151,7 +151,7 @@ Matricula addMat() {
 
 
 
-	printf("Turma da disciplina em que os alunos serao matriculados (1 ou 2): ", addM[qq].nome);
+	printf("\nTurma da disciplina em que os alunos serao matriculados (1 ou 2): ", addM[qq].nome);
 	scanf("%d", &auxT);
 
 	for (int y1 = 0; y1 < count; y1++)
@@ -172,11 +172,11 @@ Matricula cancelaMat() {
 	Matricula canM[TAM];
 	int qq = 0, auxT, count = 0;
 	char aux1[20], aux2[20];
-	
+
 	printf("Para parar digite 'x'\n");
 	do
 	{
-		printf("Nome: ");
+		printf("\nNome: ");
 		scanf("%s", canM[qq].nome);
 		strcpy(aux1, canM[qq].nome);
 		qq++;
@@ -189,13 +189,13 @@ Matricula cancelaMat() {
 	printf("Para parar o cadastro digite 'x'\n");
 	do
 	{
-		printf("Disciplina em que os alunos serao removidos: ");
+		printf("\nDisciplina em que os alunos serao removidos: ");
 		scanf("%s", canM[qq].disc.nome);
 		strcpy(aux2, canM[qq].disc.nome);
 		qq++;
 	} while ((strcmp(aux2, "x") != 0));
 
-	printf("Turma da disciplina em que os alunos  serao removidos (1 ou 2): ", canM[qq].nome);
+	printf("\nTurma da disciplina em que os alunos  serao removidos (1 ou 2): ", canM[qq].nome);
 	scanf("%d", &auxT);
 
 	for (int vv = 0; vv < qq; vv++)
@@ -204,7 +204,7 @@ Matricula cancelaMat() {
 		strcpy(canM[vv].disc.nome, "00000");
 		canM[vv].disc.turma = 00000;
 	}
-	
+
 	printf("OK!\n");
 	return *canM;
 }
@@ -220,8 +220,6 @@ Professor vincular() {
 		printf("Nome: ");
 		scanf("%s", vinc[qq].nome);
 		strcpy(aux1, vinc[qq].nome);
-		printf("Registro: ");
-		scanf("%d", &vinc[qq].reg);
 		count++;
 
 	} while ((strcmp(aux1, "x") != 0));
@@ -252,7 +250,7 @@ Professor vincular() {
 
 	printf("OK!\n");
 
-	
+
 	return *vinc;
 
 }
@@ -268,8 +266,6 @@ Professor desvincular() {
 		printf("Nome: ");
 		scanf("%s", desvinc[qq].nome);
 		strcpy(aux1, desvinc[qq].nome);
-		printf("Registro: ");
-		scanf("%d", &desvinc[qq].reg);
 		qq++;
 		count++;
 
@@ -300,9 +296,6 @@ Professor desvincular() {
 		}
 
 	}
-	
-
-
 
 	printf("OK!\n");
 	return *desvinc;
@@ -370,8 +363,6 @@ void main() {
 			p1 = 1;
 			while (p1 != 0) {
 				vetProfessor[j] = addProf();
-				printf("\nNome: %s\n", vetProfessor[j].nome);
-				printf("\nNumero de Registro: %d\n", vetProfessor[j].reg);
 				printf("\nCadastrar mais um? 0 = Sair\nOp: ");
 				scanf("%d", &p1);
 				j++;
@@ -386,8 +377,6 @@ void main() {
 			while (d2 != 0)
 			{
 				vetMat[l] = addMat();
-				printf("\nNome aluno: %s", vetMat[l].nome);
-				printf("\nDisciplina: %s, Turma: %d", vetMat[l].disc.nome, vetMat[l].disc.turma);
 				printf("\nMatricular mais um? 0 = Sair\nOp: ");
 				scanf("%d", &d2);
 				l++;
@@ -401,8 +390,6 @@ void main() {
 			while (d3 != 0)
 			{
 				vetMat[m] = cancelaMat();
-				printf("\nNome aluno: %s", vetMat[m].nome);
-				printf("\nDisciplina: %s, Turma: %d", vetMat[m].disc.nome, vetMat[m].disc.turma);
 				printf("\nRemover mais um? 0 = Sair\nOp: ");
 				scanf("%d", &d3);
 				m++;
@@ -416,23 +403,12 @@ void main() {
 			n = 0;
 			while (v1 != 0)
 			{
-				
-				
-				
 
-					
-					vetProfessor[n] = vincular();
-					printf("\nNome da disciplina: %s\nTurma: %d", vetProfessor[n].disc.nome, vetProfessor[n].disc.turma);
-					printf("\nNumero de registro do professor: %d\n", vetProfessor[n].reg);
-					n++;
-				
-				
+
+				vetProfessor[n] = vincular();
+				n++;
 				printf("\nVincular mais um? 0 = Sair\nOp: ");
 				scanf("%d", &v1);
-
-
-
-
 
 			}
 
@@ -503,7 +479,6 @@ void main() {
 				for (int c = 0; c < j; c++)
 				{
 					printf("\n-----------------------------\n");
-					printf("\nCadastrados: \n");
 					printf("Nome: %s", vetProfessor[c].nome);
 					printf("\nReg: %d", vetProfessor[c].reg);
 					printf("\n-----------------------------\n");
