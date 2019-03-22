@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <Windows.h>
 #define TAM 50
 
 
@@ -335,9 +336,10 @@ void main() {
 	int busca;
 	char auxNome[20], auxDisciplina[20];
 
-
+	
 	do
 	{
+		system("cls");
 		menu();
 
 		printf("\nOpcao: ");
@@ -351,6 +353,7 @@ void main() {
 
 		switch (opcao)
 		{
+			
 		case 1:
 			a1 = 1;
 			printf("\n\n\tCadastro de Aluno\n");
@@ -459,7 +462,7 @@ void main() {
 			subMenuImp();
 			printf("\nOp: ");
 			scanf("%d", &opMenu);
-
+			system("cls");
 			switch (opMenu)
 			{
 			case 1:
