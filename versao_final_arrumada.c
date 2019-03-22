@@ -221,17 +221,16 @@ Professor vincular() {
 	printf("\nPara parar o vinculo digite 'x' para no nome e '0' para o registro\n");
 	do
 	{
-		printf("Nome do professor: ");
+		printf("\nNome do professor: ");
 		scanf("%s", vinc[qq].nome);
 		strcpy(aux1, vinc[qq].nome);
-		printf("\nRegistro: ");
+		printf("Registro: ");
 		scanf("%d", &vinc[qq].reg);
 		qq++;
 		count++;
 
 	} while ((strcmp(aux1, "x") != 0) && (vinc[qq].reg != 0));
-	for (int iv = 0;  iv  < count;  iv ++)
-	
+
 	qq = 0;
 	printf("\nPara parar o cadastro digite 'x'\n");
 	do
@@ -254,6 +253,16 @@ Professor vincular() {
 	}
 
 
+	for (int iv = 0; iv < count; iv++)
+	{
+		if (strcmp(vinc[qq].disc.nome, vinc[qq + 1].disc.nome) == 0) {
+			if (vinc[qq].disc.turma == vinc[qq + 1].disc.turma)
+			{
+				strcpy(vinc[qq].nome, vinc[qq + 1].nome);
+			}
+		}
+
+	}
 
 	printf("OK!\n");
 
@@ -393,7 +402,6 @@ void main() {
 			}
 			break;
 
-
 		case 5:
 			printf("\n\n\tCancelar Matricula\n");
 			d3 = 1;
@@ -413,17 +421,11 @@ void main() {
 			n = 0;
 			while (v1 != 0)
 			{
-
-
 				vetProfessor[n] = vincular();
 				n++;
 				printf("\nVincular mais professores? 0 = Sair\nOp: ");
 				scanf("%d", &v1);
-
 			}
-
-
-
 
 			break;
 
